@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby-Korea Advent Calendar 2015/12/24</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# 크리스마스 이브에 뭐하나요 
+# 코딩이나 합시다
+### iOS 브라우저에서의 웹페이지 성능 개선
+
+---
+class: center, middle
+
+# 아무리 그래도 크리스마스에 코딩이라니 너무 슬프잖아요
+
+---
+class: center, middle
+
+# 그리고 전 마님이 집에서 기다리고 있다구요! ~~염장~~
+
+---
+# 사실은...
+
+* 올 한해 동안 레일스에 웹소켓 붙였던 경험을 공유하려고 했습니다.
+* 그런데 레일스 차기 버전에 Action Cable 이 들어가면서 제가 했던 삽질 대부분이 아주 간단히 해결 되더라구요 ㅠㅠ
+* 이렇게 된 이상 청와...아니 크리스마스 이브기도 하니 투자 대비 효율이 좋은 가벼운 팁을 공유하기로 했습니다.
+
+---
+class: center, middle
+# 쓸데 없는 소리가 기네요 
+# 성능 최적화로 넘어가겠습니다
+
+<img src="http://www.naeilshot.co.kr/wp-content/uploads/2013/11/focusl_675_7.jpg" width="640" />
+
+---
+
+# Gemfile
+```ruby
+gem 'fastclick-rails'
+```
+
+* 당연히 bundle 도 실행해 줍시다.
+---
+
+# Javascript (1)
+
+* Asset Pipeline 사용 하는 경우:
+
+  app/assets/javascripts/application.js
+```javascript
+//= require fastclick
+```
+
+---
+
+# Javascript (2)
+
+* JQuery 를 사용하는 경우:
+```javascript
+$(function() {
+  FastClick.attach(document.body);
+  /* 이하 코드 생략 */
+});
+```
+---
+class: center, middle
+
+# 끗~
+
+---
+
+# 참 쉽죠?
+
+<img src="http://talk.imbc.com//TVianUpload/TVian/image/2010/03/23/zLNFIBtisESk634049407784855842.jpg" width="640" />
+
+---
+
+# 부가 설명
+
+* [Fastclick](https://github.com/ftlabs/fastclick) 은 ~~무려~~ [Finacial Time Labs](http://labs.ft.com) 에서 웹 컨텐츠 로딩 성능개선을 위해 제작한 Javascript 라이브러리입니다.
+* iOS 의 Safari등의 일부 모바일 브라우저는 touch 이벤트 발생 시 이 이벤트를 링크 등의 click 이벤트로 전파해야 할지 매번 체크하는 이유로 약간의 딜레이(300ms)가 발생합니다.
+* 브라우저의 click 이벤트를 가진 엘리먼트들에 touch 이벤트를 바인드 하여 이 딜레이를 줄여주는 역할을 합니다.
+* [fastclick-rails gem](https://github.com/komagata/fastclick-rails) 은 레일스에서 fastclick.js 를 Asset Pipeline 을 통해 로딩 해주는 라이브러리입니다.
+
+---
+
+# Merry Christmas!
+
+* 성능개선도 했겠다 얼른 사랑하는 사람들 곁으로 가세요!
+
+---
+
+# ACodeFarmer
+
+* RoRLab Slack: @acodefarmer 
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
